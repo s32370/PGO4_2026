@@ -14,29 +14,68 @@ public class InsuranceOffice {
     }
 
 
-
-    public addPolicy(Policy policy){
-
-    }
-    public printReport(){
+    public void addPolicy(Policy policy) {
+        policies.add(policy);
 
     }
-    public calculateTotalPremium(){
+
+    public void printReport() {
+        System.out.println("Insurance Office Report: " + name);
+
+        for (Policy p : policies) {
+            System.out.println(p);
+        }
+    }
+
+    public double calculateTotalPremium() {
+        double sum = 0;
+        for (Policy p : policies) {
+            sum += p.getFinalPremium();
+        }
+        return Math.round(sum * 100.0) / 100.0;
+    }
+
+    public double calculateTotalRenewalForecast() {
+        double sum = 0;
+        for (Policy p : policies) {
+            sum += p.getRenewalPremium();
+        }
+        return Math.round(sum * 100.0) / 100.0;
+    }
+
+
+    public double countHighRiskPolicies() {
+        int count = 0;
+        for (Policy p : policies) {
+            if (p.getRiskLevel() >= 4) {
+                count++;
+            }
+        }
+        return count;
 
     }
-    public calculateTotalRenewalForecast(){
+
+    public Policy findByNumber(String policyNumber) {
+        for (Policy p : policies) {
+            if (p.getPolicyNumber().equals(policyNumber)) {
+                return p;
+            }
+        }
+        return null;
 
     }
-    public countHighRiskPolicies(){
 
-    }
-    public Policy findByNumber(String policyNumber){
+    public void printCheaperThan(double threshold) {
+        System.out.println("Policies cheaper than " + threshold + ":");
+        for (Policy p : policies) {
+            if (p.getFinalPremium() < threshold) {
+                System.out.println(p);
+            }
 
-    }
-    public printCheaperThan(double threshold){
-
+        }
     }
 }
+
 
         //Example business logic
     //You do not have to use exactly these formulas, but the result should depend on several business conditions, not just one simple addition.
@@ -49,16 +88,5 @@ public class InsuranceOffice {
     //The final premium should not fall below a reasonable minimum, for example the base premium or a defined minimum amount.
     //It is also worth adding a method such as calculateRenewalPremium(), which prepares a renewal offer for the next year. Such a method may start from the final premium, but also include an extra charge for high risk, a surcharge for a more expensive vehicle, a discount for claim-free history, a discount for an alarm system, and a rule that limits the minimum or maximum change compared to the current premium.
     //
-    //Algorithm for calculateRenewalPremium()
-    //It is worth describing this method step by step so that the logic is clear and easy to verify. One possible algorithm is:
-    //
-    //First calculate the current final premium by calling calculateFinalPremium().
-    //Use that value as the starting point for the renewal premium.
-    //If riskLevel is high, increase the renewal premium: by 10% for level 4, by 20% for level 5 or higher.
-    //If vehicleValue is above a chosen threshold, for example 60000, add a fixed surcharge, for example 150.
-    //If the client is claim-free, reduce the result by 8%.
-    //If the vehicle has an alarm, reduce the result by another 5%.
-    //If after all adjustments the new premium would fall below 90% of the current final premium, set a minimum threshold equal to 90% of that premium.
-    //If after all adjustments the new premium would exceed 125% of the current final premium, set a maximum threshold equal to 125% of that premium.
-    //Finally return the result rounded to two decimal places.
+
 
