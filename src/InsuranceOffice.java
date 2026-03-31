@@ -1,20 +1,42 @@
 //A class responsible for storing policies and preparing a report for the manager.
 
+import java.util.ArrayList;
+
 public class InsuranceOffice {
 
     //Example fields:
-    private String name
-    private ArrayList<Policy> policies
+    private String name;
+    private ArrayList<Policy> policies;
+
+    public InsuranceOffice(String name) {
+        this.name = name;
+        this.policies = new ArrayList<>();
+    }
 
 
-    addPolicy(Policy policy)
-    printReport()
-    calculateTotalPremium()
-    calculateTotalRenewalForecast()
-    countHighRiskPolicies()
-    findByNumber(String policyNumber)
-    printCheaperThan(double threshold)
 
+    public addPolicy(Policy policy){
+
+    }
+    public printReport(){
+
+    }
+    public calculateTotalPremium(){
+
+    }
+    public calculateTotalRenewalForecast(){
+
+    }
+    public countHighRiskPolicies(){
+
+    }
+    public Policy findByNumber(String policyNumber){
+
+    }
+    public printCheaperThan(double threshold){
+
+    }
+}
 
         //Example business logic
     //You do not have to use exactly these formulas, but the result should depend on several business conditions, not just one simple addition.
@@ -39,4 +61,4 @@ public class InsuranceOffice {
     //If after all adjustments the new premium would fall below 90% of the current final premium, set a minimum threshold equal to 90% of that premium.
     //If after all adjustments the new premium would exceed 125% of the current final premium, set a maximum threshold equal to 125% of that premium.
     //Finally return the result rounded to two decimal places.
-}
+

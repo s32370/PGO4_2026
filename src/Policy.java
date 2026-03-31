@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Policy {
 
 
@@ -45,21 +47,32 @@ public class Policy {
     }
 
 
-    public double calculateFinalPremium()
-    public double calculateRenewalPremium()
-    public String getRiskLevel()
-    public static int getCreatedPolicyCount()
+    public double calculateFinalPremium(){
+
+    }
+    public double calculateRenewalPremium(){
+
+    }
+
+
 
         // The cleanest option is to place equals() and toString() directly inside the Policy class
         // because it represents one business entity.
         // A static field that counts all created policies also fits naturally there.
     @Override
-    toString(){
-
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Policy)) return false;
+        Policy policy = (Policy) o;
+        return Objects.equals(policyNumber, policy.policyNumber);
     }
+
     @Override
-    equals(){
-        // comparing objects by policyNumber.
-
+    public String toString() {
+        return "Policy {" + "number='" + policyNumber+'\'' +
+                ", client='" + clientName+'\'' +
+                ", finalPremium=" + calculateFinalPremium() +
+                '}';
     }
+
 }
